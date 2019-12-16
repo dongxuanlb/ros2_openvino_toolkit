@@ -56,7 +56,7 @@ include_directories(
   ${message_filters_INCLUDE_DIRS}
 )
 
-set(CPU_EXTENSION_LIB /opt/intel/openvino/deployment_tools/inference_engine/samples/build/intel64/Release/lib/libcpu_extension.so)
+set(CPU_EXTENSION_LIB /home/dongxuan/inference_engine_samples_build/intel64/Release/lib/libcpu_extension.so)
 add_library(cpu_extension SHARED IMPORTED)
 set_target_properties(cpu_extension PROPERTIES
   IMPORTED_LOCATION ${CPU_EXTENSION_LIB})
