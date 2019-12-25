@@ -6,21 +6,13 @@ from launch_ros.descriptions import ComposableNode
 from ament_index_python.packages import get_package_share_directory
 
 def generate_launch_description():
-    print(get_package_share_directory('openvino_node')+'/config/object_detection.yaml')
-
+    print(get_package_share_directory('openvino_node')+'/config/object_detection_myriad.yaml')
     container = ComposableNodeContainer(
             node_name='vision_pipeline',
             node_namespace='',
             package='rclcpp_components',
             node_executable='component_container',
-            emulate_tty=True,
             composable_node_descriptions=[
-		ComposableNode(
-                    package='realsense_ros',
-                    node_plugin='realsense::RealSenseNodeFactory',
-                    node_name='realsense',
-                    parameters=[get_package_share_directory('realsense_examples')+'/config/t265.yaml'],
-                    extra_arguments=[{'use_intra_process_comms':False}]),
                 ComposableNode(
                     package='realsense_ros',
                     node_plugin='realsense::RealSenseNodeFactory',
@@ -32,7 +24,7 @@ def generate_launch_description():
                     node_plugin='openvino::OpenVINOFactory',
                     node_name='object_detection',
                     remappings=[('/rdk/openvino/detected_objects', '/openvino/detected_objects'), ('/rdk/openvino/image_raw', '/camera/color/image_raw')],
-                    parameters=[get_package_share_directory('openvino_node')+'/config/object_detection.yaml'],
+                    parameters=[get_package_share_directory('openvino_node')+'/config/object_detection_myriad.yaml'],
                     extra_arguments=[{'use_intra_process_comms':False}])
             ],
             output='screen',
@@ -51,4 +43,4 @@ def generate_launch_description():
             arguments=['--display-config', default_rviz]
     )
 
-    return launch.LaunchDescription([container, visualization])
+    return launch.LaunchDescription([container, visualization, rviz])

@@ -1,4 +1,4 @@
 device: CPU
 type: SSD
-model: /home/intel/workspace/rdk_ws/data/FP32/mobilenet-ssd.xml
-weights: /home/intel/workspace/rdk_ws/data/FP32/mobilenet-ssd.bin
+model: /opt/openvino_toolkit/models/object_detection/mobilenet-ssd/caffe/output/FP32/mobilenet-ssd.xml
+weights: /opt/openvino_toolkit/models/object_detection/mobilenet-ssd/caffe/output/FP32/mobilenet-ssd.bin
